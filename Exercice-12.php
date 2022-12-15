@@ -22,4 +22,7 @@ foreach ($student as $prenom => $lang) {
         case "ESP":
             echo "Halo" . $prenom;        
     }
+  i
+    }
+    
 }
