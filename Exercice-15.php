@@ -1,22 +1,67 @@
-<h1 style="color: #00FF00;  ">
-    Exercice 15
-</h1>
-</h1>
-<p style="color: #229954; ">Créer une classe Personne (nom, prénom et date de naissance).Instancier 2 personnes et afficher leurs informations: nom, prénom et âge.$p1 = new Personne("DUPONT","Michel", "1980-02-19");$p2 =new Personne("DUCHEMIN","Alice", "1985-01-17");</p>
-<hr >
+
 <?php
-$person1 = "DUPONT". "Michel";
-$person2 = "DUCHEMIN" . "Alice";
 
-$birt1 =  "1980-02-19";
-$birth2 = "1985-01-17";
-if ($birt1 = $person1 ){
-    echo $person1 ." -" . $birt1;
+class Personne
+{
+    private string $_nom;
+    private string $_prenom;
+    private DateTime $_dtNaissance;
 
-} elseif{
-    echo $person2 . " -" . $birth2;
+    public function __construct(string $nom, string $prenom, string $dtNaissance)
+    {
+        $this->_nom = $nom;
+        $this->_prenom = $prenom;
+        $this->_dtNaissance = new DateTime($dtNaissance);
+    }
 
-} else {
-    echo "cette person est nexist pas";
+    public function calcAge()
+    {
+        $dtAujourdhui = date("Y-m-d");
+        $diff = date_diff($this->_dtNaissance, date_create($dtAujourdhui));
+        return $diff->format('%y ans   '). "<br>"; 
+    }
+
+    public function __toString() {
+        return $this->_prenom." ".$this->_nom." ".$this->calcAge();
+    }
+
+    public function get_nom()
+    {
+        return $this->_nom;
+    }
+
+    public function set_nom($_nom)
+    {
+        $this->_nom = $_nom;
+        return $this;
+    }
+
+    public function get_prenom()
+    {
+        return $this->_prenom;
+    }
+
+    public function set_prenom($_prenom)
+    {
+        $this->_nom = $_prenom;
+        return $this;
+    }
+
+    public function get_dtNaissance()
+    {
+        return $this->_dtNaissance;
+    }
+
+    public function set_dtNaissance($_dtNaissance)
+    {
+        $this->_dtNaissance = $_dtNaissance;
+        return $this;
+    }
+
 }
 
+$personne1 = new Personne("DUPONT", "Michel", "2000-06-19");
+$personne2 = new Personne("DUCHEMIN", "Alice", "1800-12-31");
+
+echo $personne1;
+echo $personne2;
